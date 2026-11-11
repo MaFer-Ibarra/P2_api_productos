@@ -1,6 +1,6 @@
 {
     "info": {
-        "_postman_id": "f1a74e76-1484-4dc8-89ca-bab5217b2365",
+        "_postman_id": "411126b8-87b9-4a0f-9b2d-64d03efacbf4",
         "name": "P2Productos",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
         "description": ""
@@ -173,6 +173,56 @@
                         "api",
                         "productos",
                         "2"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000"
+                }
+            }
+        },
+        {
+            "name": "http://localhost:3000/api/productos?buscar=tec",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:3000/api/productos?buscar=tec",
+                    "query": [
+                        {
+                            "key": "buscar",
+                            "value": "tec"
+                        }
+                    ],
+                    "variable": [],
+                    "path": [
+                        "api",
+                        "productos"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000"
+                }
+            }
+        },
+        {
+            "name": "http://localhost:3000/api/productos?buscar=xyz",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:3000/api/productos?buscar=xyz",
+                    "query": [
+                        {
+                            "key": "buscar",
+                            "value": "xyz"
+                        }
+                    ],
+                    "variable": [],
+                    "path": [
+                        "api",
+                        "productos"
                     ],
                     "protocol": "http",
                     "host": [

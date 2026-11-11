@@ -28,6 +28,7 @@ El servidor queda en http://localhost:3000
 | POST | /api/productos | Crear | 201 + objeto creado | 400 |
 | PUT | /api/productos/:id | Actualizar | 200 + objeto actualizado | 400, 404 |
 | DELETE | /api/productos/:id | Eliminar | 204 sin contenido | 404 |
+| GET | /api/productos?buscar=texto | Buscar por nombre | 200 + arreglo filtrado | — |
 
 ## Ejemplo
 
