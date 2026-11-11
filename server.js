@@ -1,17 +1,40 @@
 const express = require("express");
 const cors = require("cors");
 
+const fs = require("fs");
+const path = require("path");
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
 
-let productos = [
-  { id: 1, nombre: "Teclado", precio: 350, stock: 10 },
-  { id: 2, nombre: "Mouse", precio: 180, stock: 25 }
-];
-let siguienteId = 3;
+const ARCHIVO = path.join(__dirname, "productos.json");
+
+function cargarProductos() {
+  try {
+    const texto = fs.readFileSync(ARCHIVO, "utf8");
+    return JSON.parse(texto);
+  } catch (error) {
+    // sino existe, usar ejemplos
+    return [
+      { id: 1, nombre: "Teclado", precio: 350, stock: 10 },
+      { id: 2, nombre: "Mouse", precio: 180, stock: 25 }
+    ];
+  }
+}
+
+function guardarProductos() {
+  fs.writeFileSync(ARCHIVO, JSON.stringify(productos, null, 2));
+}
+
+let productos = cargarProductos();
+let siguienteId = productos.length > 0
+  ? Math.max(...productos.map(p => p.id)) + 1
+  : 1;
+
+guardarProductos(); // crear archivo si no existe
 
 app.get("/", (req, res) => {
   res.json({ mensaje: "API de productos funcionando" });
@@ -56,6 +79,7 @@ app.post("/api/productos", (req, res) => {
 
   const nuevo = { id: siguienteId++, ...req.body };
   productos.push(nuevo);
+  guardarProductos();
   res.status(201).json(nuevo);
 });
 
@@ -73,6 +97,7 @@ app.put("/api/productos/:id", (req, res) => {
     return res.status(400).json({ errores });
 
   productos[indice] = { id, ...req.body };
+  guardarProductos();
   res.status(200).json(productos[indice]);
 });
 
@@ -85,6 +110,7 @@ app.delete("/api/productos/:id", (req, res) => {
     return res.status(404).json({ error: `No existe el producto ${id}` });
 
   productos = productos.filter(p => p.id !== id);
+  guardarProductos();
   res.status(204).send();
 });
 
