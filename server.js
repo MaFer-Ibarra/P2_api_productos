@@ -44,6 +44,16 @@ app.get("/", (req, res) => {
 // rutas de lectura GET
 // Listar todos
 app.get("/api/productos", (req, res) => {
+  const { buscar } = req.query;
+
+  if (buscar) {
+    const texto = String(buscar).toLowerCase();
+    const resultado = productos.filter(p =>
+      p.nombre.toLowerCase().includes(texto)
+    );
+    return res.status(200).json(resultado);
+  }
+
   res.status(200).json(productos);
 });
 
