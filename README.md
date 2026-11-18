@@ -5,7 +5,7 @@ Responde en JSON con los códigos de estado HTTP correctos.
 
 > ### Integrantes
 > - **Integrante 1:** Ibarra Ibarra Maria Fernanda · 232310080
-> - **Integrante 2:** Nombre Apellido · 232310
+> - **Integrante 2:** Zavala Anguiano Valeria · 232310127
 >
 > **Materia:** Programación Web · Grupo 4X7B
 > **Docente:** Dra. María Guadalupe Flores Luevanos
